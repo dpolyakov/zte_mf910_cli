@@ -14,6 +14,14 @@
 
 - `python sendsms.py 192.168.1.1 +79991112233 "sms from python cli"`
 
+## Usage
+
+- `python -m venv`
+- `source ./venv/bin/activate`
+- `pip install -r requirements.txt`
+- ...
+- use scripts
+
 ## Useful links
 
 - [zte-modem-api-docs](https://wijayamin.github.io/zte-modem-api-docs/)

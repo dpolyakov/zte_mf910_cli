@@ -10,64 +10,85 @@ import time
 
 import base64
 import requests
+import logging
+
+#logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format='%(name)s - %(levelname)s - %(message)s')
 
 host=sys.argv[1]
-
-# get admin password
-
+url = 'http://{}/goform/goform_set_cmd_process'.format(host)
 authUrl = "http://{}/goform/goform_get_cmd_process?cmd=admin_Password&multi_data=0".format(host)
 
-headers = {
-	'Referer': 'http://{}/index.html'.format(host)
-}
+# get admin password
+def getSession():
+	headers = {
+		'Referer': 'http://{}/index.html'.format(host)
+	}
 
-adminData = requests.request("GET", authUrl, headers=headers)
+	try:
+		adminData = requests.request("GET", authUrl, headers=headers)
 
-adminData = adminData.json()
-password = adminData['admin_Password'];
-encodedPassword = base64.b64encode(bytes(password, 'utf-8')).decode()
+		adminData = adminData.json()
+		password = adminData['admin_Password'];
+		encodedPassword = base64.b64encode(bytes(password, 'utf-8')).decode()
 
-#logging.info(encodedPassword);
+		#logging.info(encodedPassword);
+		loginRequestData = urllib.parse.urlencode({
+			'goformId' : 'LOGIN',
+			'isTest' : 'false',
+			'password' : encodedPassword,
+		})
 
-url = 'http://{}/goform/goform_set_cmd_process'.format(host)
+		s = requests.Session()
+		s.headers.update(headers)
 
-loginRequestData = urllib.parse.urlencode({
-	'goformId' : 'LOGIN',
-	'isTest' : 'false',
-	'password' : encodedPassword,
-})
+		# Les`t auth and get cookies
+		s.post(url, loginRequestData)
 
-s = requests.Session()
-s.headers.update(headers)
+		#logging.info(s.cookies);
 
-# Les`t auth and get cookies
-s.post(url, loginRequestData)
+		return s;
+	except Exception as exception:
+		logging.error(type(exception).__name__)
 
-#logging.info(s.cookies);
+		return None;
 
+def main():
+	command=sys.argv[2]
+	session = getSession()
 
-command=sys.argv[2]
+	if session == None :
+		logging.error('Session not started')
 
-if command == 'reload' :
+		exit()
 
-	print('DISCONNECT_NETWORK')
-	s.post(url, {
-		'goformId' : 'DISCONNECT_NETWORK',
-		'isTest' : 'false'
-	})
+	if command == 'reload' :
 
-	time.sleep(5)
+		logging.info('DISCONNECT_NETWORK')
+		session.post(url, {
+			'goformId' : 'DISCONNECT_NETWORK',
+			'isTest' : 'false'
+		})
 
-	print('CONNECT_NETWORK')
-	s.post(url, {
-		'goformId' : 'CONNECT_NETWORK',
-		'isTest' : 'false'
-	})
-	s.close()
+		time.sleep(5)
 
-if command == 'restart' :
-	s.post(url, {
-		'goformId' : 'REBOOT_DEVICE',
-		'isTest' : 'false'
-	})
-	s.close()
+		logging.info('CONNECT_NETWORK')
+		session.post(url, {
+			'goformId' : 'CONNECT_NETWORK',
+			'isTest' : 'false'
+		})
+		session.close()
+
+	if command == 'restart' :
+		logging.info('REBOOT_DEVICE')
+
+		try:
+			session.post(url, {
+				'goformId' : 'REBOOT_DEVICE',
+				'isTest' : 'false'
+			})
+
+		except requests.exceptions.ReadTimeout:
+			pass
+
+		session.close()
+main()
