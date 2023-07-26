@@ -1,75 +1,64 @@
+""" Sending sms via modem """
 #!/usr/bin/python
-
 # coding: utf8
 
 from time import gmtime, strftime
-import urllib
-import urllib.parse
+
 import sys
+import urllib.parse
+import logging
 
-import base64
-import requests
-
-#import logging
-#logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format='%(name)s - %(levelname)s - %(message)s')
+import auth
 
 
-host=sys.argv[1]
+def send_sms():
+    """ Send sms """
+    if len(sys.argv) <= 1 :
+        logging.error("host not defined")
 
-# get admin password
+        sys.exit(0)
 
-authUrl = "http://{}/goform/goform_get_cmd_process?cmd=admin_Password&multi_data=0".format(host)
+    if len(sys.argv) <= 2:
+        logging.error("recipient number not defined")
 
-headers = {
-	'Referer': 'http://{}/index.html'.format(host)
-}
+        sys.exit(0)
 
-adminData = requests.request("GET", authUrl, headers=headers)
+    if len(sys.argv) <= 3:
+        logging.error("message is empty")
 
-adminData = adminData.json()
-password = adminData['admin_Password'];
-encodedPassword = base64.b64encode(bytes(password, 'utf-8')).decode()
+        sys.exit(0)
 
-#logging.info(encodedPassword);
+    host = sys.argv[1]
+    number = sys.argv[2]
+    text = sys.argv[3]
 
-url = 'http://{}/goform/goform_set_cmd_process'.format(host)
+    # Prepare sms
+    url = f"http://{host}/goform/goform_set_cmd_process"
+    session = auth.get_auth_session(host)
 
-loginRequestData = urllib.parse.urlencode({
-	'goformId' : 'LOGIN',
-	'isTest' : 'false',
-	'password' : encodedPassword,
-})
+    if session is None:
+        logging.error("Session not started")
 
-s = requests.Session()
-s.headers.update(headers)
+        sys.exit(0)
 
-# Les`t auth and get cookies
-s.post(url, loginRequestData)
+    text = text.encode("utf-16-be")
 
-#logging.info(s.cookies);
+    msg = "".join(f"{c:02x}" for c in text)
+
+    time = strftime("%y;%m;%d;%H;%M;%S;+5", gmtime())
+
+    sms = urllib.parse.urlencode({
+        "notCallback": "true",
+        "goformId": "SEND_SMS",
+        "isTest": "false",
+        "Number": number,
+        "sms_time": time,
+        "MessageBody": msg,
+        "encode_type": "UNICODE",
+        "ID": "-1"
+    })
+
+    session.post(url, sms)
 
 
-# Prepare sms
-text=sys.argv[3]
-text=text.encode("utf-16-be")
-msg="".join("{:02x}".format(c) for c in text)
-
-number=sys.argv[2]
-
-time=strftime("%y;%m;%d;%H;%M;%S;+5", gmtime())
-
-sms = urllib.parse.urlencode({
-	'notCallback' : 'true',
-	'goformId' : 'SEND_SMS',
-	'isTest' : 'false',
-	'Number' : number,
-	'sms_time': time,
-	'MessageBody': msg,
-	'encode_type' : 'UNICODE',
-	'ID' : '-1'}
-)
-
-#logging.info(sms)
-
-s.post(url, sms)
-
+send_sms()
