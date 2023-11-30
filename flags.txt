@@ -1,0 +1,262 @@
+france_auto_verify_pin_flag=
+pin_manage_result=
+pinnumber=
+puknumber=
+pin_status=
+sim_gid1=
+apn_1=
+apn_2=
+apn_3=
+reset_refresh_flag=
+domain_stat=
+network_provider=
+simcard_roam=
+psw_fail_num_str=
+last_login_time=
+prefer_dns_auto=
+standby_dns_auto=
+pin_manage_at_wait=
+wa_inner_version=
+hardware_version=
+integrate_version=
+imei=
+lac_code=
+cell_id=
+rssi=
+rscp=
+ecio=
+ppp_status=
+network_type=
+pin_puk_at_wait=
+wan_ipaddr=
+battery_status=
+dlginfo=
+station_num=
+station_mac=
+wifi_driver_reload_flag=
+signalbar=
+m_netselect_status=
+m_netselect_result=
+sms_unread_count=
+spn_display_flag=
+plmn_display_flag=
+spn_b1_flag=
+spn_b2_flag=
+spn_name_data=
+battery_pers=
+battery_charging=
+battery_value=
+battery_vol_percent=
+msisdn=
+pbm_write_flag=
+locknum=
+sms_sim_capability_used=
+sms_nv_capability_used=
+pre_ppp_status=
+sm_cause=
+ussd_write_flag=
+ussd_write_flag_swiss=
+ussd_action=
+ussd_content=
+mdm_mcc=
+mdm_mnc=
+wan_curr_tx_bytes=
+wan_curr_rx_bytes=
+wan_curr_conn_time=
+imsi_select_mode=
+current_imsi_provider=
+msisdn_sbm=
+msisdn_em=
+sim_clear_all_flag=
+hplmn=
+sim_iccid=
+sim_imsi=
+mexico_active_flag=
+rmcc=
+rmnc=
+stk_write_flag=
+pin_modify_or_save=
+check_apn_result=
+ussd_write_flag_msisdn=
+login_last_time=
+pin_puk_result=
+support_pbm_flag=
+network_search=
+ipv6_wan_ipaddr=
+ipv6_prefer_dns_auto=
+ipv6_standby_dns_auto=
+user_ip_addr=
+user_login_timemark=
+user_conflict_timemark=
+lcd_loginfo=
+wifi_set_flags=
+ex_wifi_rssi=
+ex_wifi_status=
+EX_APLIST=
+lte_rssi=
+lte_rsrq=
+lte_rsrp=
+lte_snr=
+wan_csq=
+network_provider_fullname=
+hmcc=
+hmnc=
+hplmn_fullname=
+mdm_mcc=
+mdm_mnc=
+realtime_tx_bytes=
+realtime_rx_bytes=
+realtime_tx_thrpt=
+realtime_rx_thrpt=
+realtime_time=
+data_status=
+sleep_status=
+wps_pin=
+work_mode=
+peak_tx_bytes=
+peak_rx_bytes=
+traffic_sbm_profile_realtime_tx=
+traffic_sbm_profile_realtime_rx=
+traffic_sbm_profile_realtime_time=
+traffic_em_profile_realtime_tx=
+traffic_em_profile_realtime_rx=
+traffic_em_profile_realtime_time=
+mode_main_state=
+wispr_result=
+devui_get_sim_info=
+wan_network_status=
+wifi_profile_tmp=
+oled_test_status=
+ex_wifi_rssi_dbm=
+EX_APLIST1=
+scan_finish=
+fota_apn_flag=
+ssid2_stat=
+sta_ip_status=
+pbm_group=
+pbm_init_flag=
+dlna_rescan_end=
+modem_msn=
+manufacturer=
+model_name=
+upgrade_remind=
+sc=
+lte_pci=
+tx_power=
+enodeb_id=
+lte_band=
+redirect_flag=
+wan_rrc_state=
+wan_active_band=
+mgmt_open_url_for_auto_connect_flag=
+fota_check_result=
+fota_upgrade_result=
+pbm_cur_index=
+pbm_load_complete=
+sms_current_db_id=
+sms_init=
+systime_mode=
+product_type=
+cable_dial_status=ppp_disconnected
+router_mode_gateway=
+current_wan_interface=
+current_cable_mode=
+redirect_flag=
+ota_user_select=none
+telnet_debug=
+dm_update_package_exist=0
+dm_update_dd_description=
+dm_update_firmware_size=
+dm_update_new_version=
+dm_update_package_file_exist=
+imei_sv=
+apsta_startup_flag=0
+wifi_wps_index=
+default_route=
+syn_done=
+#added by zhangjingkun for mf910v roam apn pdp type begin #
+default_ipv6_pdp_type=
+default_pdp_type=
+#added by zhangjingkun for mf910v roam apn pdp type end #
+nitz_sync_flag=0
+ussd_get_msisdn_success_flag=
+ussd_msisdn=
+
+
+PCI
+Ну и самое сложное на закуску: PCI он же Physical Cell Identifier, то есть физический идентификатор соты. Он используется смартфоном для переключения между сотами, например, в случае ухудшения качества от обслуживающей соты или когда нагрузка на станции становится слишком большой сеть может скомандовать перейти на другую станцию.
+
+RSSI — это значение мощности сигнала, поступающего на антенны устройства. Показатель RSSI измеряется в децибел-милливаттах (дБм) и означает мощность сигнала, принятого вашим прибором. В современных сетях этот показатель не позволяет узнать качество сигнала, поскольку учитывает не только полезный сигнал вашей соты, но также весь побочный сигнал в измеряемом диапазоне частот. Например, значение RSSI включает в себя сигнал соседних базовых станций, внутренние и внешние помехи, шумы.
+
+RSCP (Received Signal Code Power)
+В 3G-сетях, помимо показателя RSSI, используется параметр RSCP (Received Signal Code Power). Этот показатель означает мощность сигнального кода, полученного вашим прибором при подключении к базовой станции оператора. Важно понимать, что этот показатель не учитывает окружающие помехи. Высокое значение RSCP не обязательно означает высокое качество связи, поскольку уровень окружающих шумов может быть критичным для работы 3G-соединения.
+
+RSRP (Reference Signal Received Power)
+По мере разработки четвертого поколения сотовой связи консорциум 3GPP пришел к выводу, что показатель RSSI, учитывающий мощность всего входящего сигнала, является не самым удобным инструментом. Вместо показателя RSSI в спецификациях LTE-сетей широко используется параметр RSRP, который оценивает мощность на основе пилотных сигналов, поступающих от текущей базовой станции. Поскольку RSRP не зависит от ширины канала и не учитывает побочные сигналы и помехи, он всегда имеет более низкое числовое значение, чем RSSI.
+
+SINR (Signal Interference + Noise Ratio)
+В идеально мире, где отсутствуют электромагнитные помехи и сигнал от источника без искажений достигает приемника, измерение шумов не требуется. Однако в реальной жизни на сотовый сигнал влияет множество факторов, таких как погодные условия, рельеф местности, зеленые насаждения, близлежащие здания, стены, неправильная настройка антенн, различное работающее оборудование.
+
+RSRQ (Reference Signal Received Quality)
+Консорциум 3GPP для оценки качества 4G-сигнала предложил собственный показатель — RSRQ (Reference Signal Received Quality). Фактически RSRQ указывает на качество принятых пилотных сигналов от текущей базовой станции, а для его расчетов используются значения RSSI и RSRP.
+
+https://gsm-repiteri.ru/chto-takoe-rssi-sinr-rsrp-rsrq-parametry-kachestva-signala
+
+
+USSD
+curl 'http://192.168.32.1/goform/goform_set_cmd_process' \
+  -H 'Accept: application/json, text/javascript, */*; q=0.01' \
+  -H 'Accept-Language: ru,en;q=0.9,uk;q=0.8,bg;q=0.7' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' \
+  -H 'Cookie: stok=9CFA9C24730D14EAC23C82F7' \
+  -H 'DNT: 1' \
+  -H 'Origin: http://192.168.32.1' \
+  -H 'Referer: http://192.168.32.1/index.html' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.2325 YaBrowser/23.9.0.2325 Yowser/2.5 Safari/537.36' \
+  -H 'X-Requested-With: XMLHttpRequest' \
+  --data-raw 'isTest=false&goformId=USSD_PROCESS&USSD_operator=ussd_send&USSD_send_number=*100*12%23&notCallback=true' \
+  --compressed \
+  --insecure
+
+sms_capacity_info
+  curl 'http://192.168.32.1/goform/goform_get_cmd_process?isTest=false&cmd=sms_capacity_info&_=1701253347131' \
+  -H 'Accept: application/json, text/javascript, */*; q=0.01' \
+  -H 'Accept-Language: ru,en;q=0.9,uk;q=0.8,bg;q=0.7' \
+  -H 'Connection: keep-alive' \
+  -H 'Cookie: stok=9CFA9C24730D14EAC23C82F7' \
+  -H 'DNT: 1' \
+  -H 'Referer: http://192.168.32.1/index.html' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.2325 YaBrowser/23.9.0.2325 Yowser/2.5 Safari/537.36' \
+  -H 'X-Requested-With: XMLHttpRequest' \
+  --compressed \
+  --insecure
+
+
+  fetch("http://192.168.32.1/goform/goform_set_cmd_process", {
+  "headers": {
+    "accept": "application/json, text/javascript, */*; q=0.01",
+    "accept-language": "ru,en;q=0.9,uk;q=0.8,bg;q=0.7",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "http://192.168.32.1/index.html",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "isTest=false&goformId=SEND_SMS&notCallback=true&Number=%2B79264094805&sms_time=23%3B11%3B29%3B16%3B25%3B11%3B%2B3&MessageBody=0074006500730074002000660072006F006D0020007700650062&ID=-1&encode_type=GSM7_default",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});
+
+
+curl 'http://192.168.32.1/goform/goform_get_cmd_process?cmd=sms_cmd_status_info&sms_cmd=4&isTest=false&_=1701267437573' \
+  -H 'Accept: application/json, text/javascript, */*; q=0.01' \
+  -H 'Accept-Language: ru,en;q=0.9,uk;q=0.8,bg;q=0.7' \
+  -H 'Connection: keep-alive' \
+  -H 'Cookie: stok=F589B0368B6917EC15281959' \
+  -H 'DNT: 1' \
+  -H 'Referer: http://192.168.32.1/index.html' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.2325 YaBrowser/23.9.0.2325 Yowser/2.5 Safari/537.36' \
+  -H 'X-Requested-With: XMLHttpRequest' \
+  --compressed \
+  --insecure
